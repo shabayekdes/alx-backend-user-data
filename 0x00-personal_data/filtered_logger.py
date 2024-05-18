@@ -41,7 +41,8 @@ def filter_datum(fields: List[str],
 
 
 def get_logger() -> logging.Logger:
-    """ returns a logging.Logger object """
+    """Implement a get_logger function
+    """
     logger = logging.getLogger("user_data")
     logger.setLevel(logging.INFO)
     logger.propagate = False
@@ -52,7 +53,8 @@ def get_logger() -> logging.Logger:
 
 
 def get_db() -> mysql.connector.connection.MySQLConnection:
-    """ returns a connector to the database """
+    """Connect to the database
+    """
     return mysql.connector.connect(
                     host=os.environ.get('PERSONAL_DATA_DB_HOST', 'localhost'),
                     database=os.environ.get('PERSONAL_DATA_DB_NAME', 'root'),
