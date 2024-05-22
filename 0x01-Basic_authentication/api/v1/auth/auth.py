@@ -3,11 +3,11 @@
 """
 from flask import request
 from typing import List, TypeVar
-import fnmatch
 
 
 class Auth:
-    """Authentication class.
+    """
+    Manages the API authentication
     """
     def require_auth(self, path: str, excluded_paths: List[str]) -> bool:
         """ Method to check if auth is required.
@@ -29,8 +29,6 @@ class Auth:
                         return False
         return True
 
-        return True
-
     def authorization_header(self, request=None) -> str:
         """ Method to get authorization header.
         """
@@ -39,6 +37,7 @@ class Auth:
         return None
 
     def current_user(self, request=None) -> TypeVar('User'):
-        """ Method to get user from request.
+        """
+        Returns a User instance from information from a request object
         """
         return None
