@@ -38,15 +38,15 @@ def not_found(error) -> str:
 
 
 @app.errorhandler(401)
-def unauthorized(error) -> str:
-    """Unauthorized handler.
+def unauthorized_error(error) -> str:
+    """ Unauthorized handler
     """
     return jsonify({"error": "Unauthorized"}), 401
 
 
 @app.errorhandler(403)
-def forbidden(error) -> str:
-    """ Request unauthorized handler
+def forbidden_error(error) -> str:
+    """ Forbidden handler
     """
     return jsonify({"error": "Forbidden"}), 403
 
@@ -65,6 +65,7 @@ def before_request() -> None:
             if auth.authorization_header(
                     request) is None and auth.session_cookie(request) is None:
                 abort(401, description="Unauthorized")
+            request.current_user = auth.current_user(request)
             if auth.current_user(request) is None:
                 abort(403, description="Forbidden")
             if request.current_user is None:
