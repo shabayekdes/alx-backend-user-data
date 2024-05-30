@@ -42,7 +42,8 @@ def users() -> str:
     """
     Register a new user route
     """
-    email, password = request.form.get('email'), request.form.get('password')
+    email = request.form.get('email')
+    password = request.form.get('password')
     try:
         user = AUTH.register_user(email, password)
     except ValueError:
